@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/algorithms2/wordnet/Outcast.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithms2/wordnet/SAP.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithms2/wordnet/WordNet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms1/percolation/Percolation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms1/percolation/PercolationStats.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms1/queues/Deque.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms1/queues/Permutation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms1/queues/RandomizedQueue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +53,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="settings.saveactions" />
   </component>
   <component name="RunManager">
@@ -95,7 +100,7 @@
       <option name="presentableId" value="Default" />
       <updated>1592954624525</updated>
       <workItem from="1592954626039" duration="514000" />
-      <workItem from="1592955271684" duration="534000" />
+      <workItem from="1592955271684" duration="1119000" />
     </task>
     <servers />
   </component>
@@ -116,5 +121,9 @@
       <screen x="0" y="23" width="1920" height="977" />
     </state>
     <state x="861" y="382" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.23.1920.977@0.23.1920.977" timestamp="1592955564976" />
+    <state x="505" y="68" key="SettingsEditor" timestamp="1592956095138">
+      <screen x="0" y="23" width="1920" height="977" />
+    </state>
+    <state x="505" y="68" key="SettingsEditor/0.23.1920.977@0.23.1920.977" timestamp="1592956095138" />
   </component>
 </project>
