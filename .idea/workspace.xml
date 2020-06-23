@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/algorithms2/baseball/BaseballElimination.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms2/wordnet/Outcast.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms2/wordnet/SAP.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms2/wordnet/WordNet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,6 +24,11 @@
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
     <option name="SCHEME" value="Project" />
   </component>
   <component name="FindBugs-IDEA-Workspace">
@@ -88,7 +95,7 @@
       <option name="presentableId" value="Default" />
       <updated>1592954624525</updated>
       <workItem from="1592954626039" duration="514000" />
-      <workItem from="1592955271684" duration="280000" />
+      <workItem from="1592955271684" duration="534000" />
     </task>
     <servers />
   </component>
