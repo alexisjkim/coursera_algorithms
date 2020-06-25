@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/algorithms1/percolation/Percolation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithms1/percolation/PercolationStats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithms1/queues/Deque.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithms1/queues/Permutation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/algorithms1/queues/RandomizedQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms1/collinear/BruteCollinearPoints.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms1/collinear/FastCollinearPoints.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms1/collinear/LineSegment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms1/collinear/Point.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms1/kdtrees/KdTree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms1/kdtrees/PointSET.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms1/puzzle/Board.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/algorithms1/puzzle/Solver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,6 +56,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -100,7 +109,7 @@
       <option name="presentableId" value="Default" />
       <updated>1592954624525</updated>
       <workItem from="1592954626039" duration="514000" />
-      <workItem from="1592955271684" duration="1119000" />
+      <workItem from="1592955271684" duration="3787000" />
     </task>
     <servers />
   </component>
