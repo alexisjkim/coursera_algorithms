@@ -116,7 +116,7 @@
       <option name="presentableId" value="Default" />
       <updated>1592954624525</updated>
       <workItem from="1592954626039" duration="514000" />
-      <workItem from="1592955271684" duration="11213000" />
+      <workItem from="1592955271684" duration="16497000" />
     </task>
     <servers />
   </component>
@@ -177,5 +177,16 @@
       <screen x="0" y="23" width="1920" height="977" />
     </state>
     <state x="787" y="260" width="670" height="676" key="search.everywhere.popup/0.23.1920.977@0.23.1920.977" timestamp="1593206263226" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/algorithms2/boggle/BoggleSolver.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
