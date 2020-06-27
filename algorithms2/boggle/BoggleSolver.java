@@ -6,13 +6,15 @@
 
 package algorithms2.boggle;
 
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.SET;
 import edu.princeton.cs.algs4.Stack;
-import edu.princeton.cs.algs4.TrieSET;
+import edu.princeton.cs.algs4.StdOut;
 
 import java.util.ArrayList;
 
 public class BoggleSolver {
-    private TrieSET set;
+    private SET<String> word_set;
     private char[][] graph; // the board represented in an int[][]
     private Node head; // head
     private Stack<String> words; // all words in dictionary
@@ -55,14 +57,18 @@ public class BoggleSolver {
     }
 
     private int toIndex(int i, int j) { // converts i, j to index number
-        if (i < 0 || i > graph.length) return -1;
-        if (j < 0 || j > graph.length) return -1;
+        if (i < 0 || i > graph.length-1) return -1;
+        if (j < 0 || j > graph[0].length-1) return -1;
         return ((i * graph.length) + j);
     }
 
 
     // Returns the set of all valid words in the given Boggle board, as an Iterable.
     public Iterable<String> getAllValidWords(BoggleBoard board) {
+        if (board == null) throw new IllegalArgumentException();
+        graph = new char[board.rows()][board.cols()];
+        words = new Stack<>();
+        word_set = new SET<>();
 
         for (int i = 0; i < board.rows(); i++) {
             for (int j = 0; j < board.cols(); j++) {
@@ -72,47 +78,62 @@ public class BoggleSolver {
 
         for (int i = 0; i < board.rows(); i++) {
             for (int j = 0; j < board.cols(); j++) {
-                findWords(head, i, j, Character.toString(graph[i][j]), new ArrayList<Integer>());
+                ArrayList<Integer> past = new ArrayList<>();
+                past.add(toIndex(i,j));
+                findWords(head.next[(int) graph[i][j] - 65], i, j, Character.toString(graph[i][j]), past);
             }
         }
         return words;
     }
 
-    private void findWords(Node node, int i, int j, String string, ArrayList<Integer> past) {
-        if (node == null) return;
-        if (inTrie(string) == 1) words.push(string);
+    private void findWords(Node node, int i, int j, String string, ArrayList<Integer> past) { //TODO deal with Qu
 
-        if (!past.contains(toIndex(i-1,j)) && inTrie(string) == 0 && toIndex(i-1,j) != -1) { // if this dice is unvisited, the prefix is in the string, and the next looked at die is valid
+        if (node == null) return;
+        if (inTrie(string) == 1 && !word_set.contains(string) && string.length() > 2) { // if this word is in the trie and is the end of a word
+            words.push(string);
+            word_set.add(string);
+        }
+
+        // directly above
+        if (!past.contains(toIndex(i-1,j)) && inTrie(string) > -1 && toIndex(i-1,j) != -1) { // if this dice is unvisited, the prefix is in the string, and the next looked at die is valid
             past.add(toIndex(i-1,j));
-            findWords(node.next[(int) graph[i-1][j] - 65], i-1, j, string + graph[i][j], past);
+            findWords(node.next[(int) graph[i-1][j] - 65], i-1, j, string + graph[i-1][j], past);
+            past.remove(past.size()-1);
         }
-        if (!past.contains(toIndex(i-1,j-1)) && inTrie(string) == 0 && toIndex(i-1,j-1) != -1) {
+        if (!past.contains(toIndex(i-1,j-1)) && inTrie(string) > -1 && toIndex(i-1,j-1) != -1) { // top left
             past.add(toIndex(i-1,j-1));
-            findWords(node.next[(int) graph[i-1][j-1] - 65], i-1, j-1, string + graph[i][j], past);
+            findWords(node.next[(int) graph[i-1][j-1] - 65], i-1, j-1, string + graph[i-1][j-1], past);
+            past.remove(past.size()-1);
         }
-        if (!past.contains(toIndex(i,j-1)) && inTrie(string) == 0 && toIndex(i,j-1) != -1) {
+        if (!past.contains(toIndex(i,j-1)) && inTrie(string) > -1 && toIndex(i,j-1) != -1) { // left
             past.add(toIndex(i,j-1));
-            findWords(node.next[(int) graph[i][j-1] - 65], i, j-1, string + graph[i][j], past);
+            findWords(node.next[(int) graph[i][j-1] - 65], i, j-1, string + graph[i][j-1], past);
+            past.remove(past.size()-1);
         }
-        if (!past.contains(toIndex(i+1,j-1)) && inTrie(string) == 0 && toIndex(i+1,j-1) != -1) {
+        if (!past.contains(toIndex(i+1,j-1)) && inTrie(string) > -1 && toIndex(i+1,j-1) != -1) { // bottom left
             past.add(toIndex(i+1,j-1));
-            findWords(node.next[(int) graph[i+1][j-1] - 65], i+1, j-1, string + graph[i][j], past);
+            findWords(node.next[(int) graph[i+1][j-1] - 65], i+1, j-1, string + graph[i+1][j-1], past);
+            past.remove(past.size()-1);
         }
-        if (!past.contains(toIndex(i+1,j)) && inTrie(string) == 0 && toIndex(i+1,j) != -1) {
+        if (!past.contains(toIndex(i+1,j)) && inTrie(string) > -1 && toIndex(i+1,j) != -1) { // below
             past.add(toIndex(i+1,j));
-            findWords(node.next[(int) graph[i+1][j] - 65], i+1, j, string + graph[i][j], past);
+            findWords(node.next[(int) graph[i+1][j] - 65], i+1, j, string + graph[i+1][j], past);
+            past.remove(past.size()-1);
         }
-        if (!past.contains(toIndex(i+1,j+1)) && inTrie(string) == 0 && toIndex(i+1,j+1) != -1) {
+        if (!past.contains(toIndex(i+1,j+1)) && inTrie(string) > -1 && toIndex(i+1,j+1) != -1) { // bottom right
             past.add(toIndex(i+1,j+1));
-            findWords(node.next[(int) graph[i+1][j+1] - 65], i+1, j+1, string + graph[i][j], past);
+            findWords(node.next[(int) graph[i+1][j+1] - 65], i+1, j+1, string + graph[i+1][j+1], past);
+            past.remove(past.size()-1);
         }
-        if (!past.contains(toIndex(i,j+1)) && inTrie(string) == 0 && toIndex(i,j+1) != -1) {
+        if (!past.contains(toIndex(i,j+1)) && inTrie(string) > -1 && toIndex(i,j+1) != -1) { // right
             past.add(toIndex(i,j+1));
-            findWords(node.next[(int) graph[i][j+1] - 65], i, j+1, string + graph[i][j], past);
+            findWords(node.next[(int) graph[i][j+1] - 65], i, j+1, string + graph[i][j+1], past);
+            past.remove(past.size()-1);
         }
-        if (!past.contains(toIndex(i-1,j+1)) && inTrie(string) == 0 && toIndex(i-1,j+1) != -1) {
+        if (!past.contains(toIndex(i-1,j+1)) && inTrie(string) > -1 && toIndex(i-1,j+1) != -1) { // top right
             past.add(toIndex(i-1,j+1));
-            findWords(node.next[(int) graph[i-1][j+1] - 65], i-1, j+1, string + graph[i][j], past);
+            findWords(node.next[(int) graph[i-1][j+1] - 65], i-1, j+1, string + graph[i-1][j+1], past);
+            past.remove(past.size()-1);
         }
     }
 
@@ -160,24 +181,27 @@ public class BoggleSolver {
     }
 
     public static void main(String[] args) {
-        /*
-        In in = new In(args[0]);
+        String name = "algorithms2/boggle/testdictionary.txt";
+
+        In in = new In(name);
         String[] dictionary = in.readAllStrings();
         BoggleSolver solver = new BoggleSolver(dictionary);
-        BoggleBoard board = new BoggleBoard(args[1]);
+        BoggleBoard board = new BoggleBoard("algorithms2/boggle/testboard.txt");
         int score = 0;
+        int count = 0;
         for (String word : solver.getAllValidWords(board)) {
             StdOut.println(word);
             score += solver.scoreOf(word);
+            count++;
         }
+        System.out.println(count);
         StdOut.println("Score = " + score);
 
-         */
-
-        String[] words = new String[2];
-        words[0] = "ABC";
-        words[1] = "ACB";
-        BoggleSolver a = new BoggleSolver(words);
+        // String[] words = new String[2];
+        // words[0] = "ABC";
+        // words[1] = "ACB";
+        // BoggleSolver a = new BoggleSolver(words);
+        // Iterable<String> x = a.getAllValidWords(new BoggleBoard());
 
     }
 }
