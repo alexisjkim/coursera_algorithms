@@ -4,8 +4,6 @@
  *  Description:
  **************************************************************************** */
 
-package algorithms2.boggle;
-
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.SET;
 import edu.princeton.cs.algs4.Stack;
@@ -86,54 +84,101 @@ public class BoggleSolver {
         return words;
     }
 
-    private void findWords(Node node, int i, int j, String string, ArrayList<Integer> past) { //TODO deal with Qu
-
+    private void findWords(Node node, int i, int j, String string, ArrayList<Integer> past) { //TODO deal with Qu;
         if (node == null) return;
-        if (inTrie(string) == 1 && !word_set.contains(string) && string.length() > 2) { // if this word is in the trie and is the end of a word
-            words.push(string);
-            word_set.add(string);
-        }
 
-        // directly above
-        if (!past.contains(toIndex(i-1,j)) && inTrie(string) > -1 && toIndex(i-1,j) != -1) { // if this dice is unvisited, the prefix is in the string, and the next looked at die is valid
-            past.add(toIndex(i-1,j));
-            findWords(node.next[(int) graph[i-1][j] - 65], i-1, j, string + graph[i-1][j], past);
-            past.remove(past.size()-1);
-        }
-        if (!past.contains(toIndex(i-1,j-1)) && inTrie(string) > -1 && toIndex(i-1,j-1) != -1) { // top left
-            past.add(toIndex(i-1,j-1));
-            findWords(node.next[(int) graph[i-1][j-1] - 65], i-1, j-1, string + graph[i-1][j-1], past);
-            past.remove(past.size()-1);
-        }
-        if (!past.contains(toIndex(i,j-1)) && inTrie(string) > -1 && toIndex(i,j-1) != -1) { // left
-            past.add(toIndex(i,j-1));
-            findWords(node.next[(int) graph[i][j-1] - 65], i, j-1, string + graph[i][j-1], past);
-            past.remove(past.size()-1);
-        }
-        if (!past.contains(toIndex(i+1,j-1)) && inTrie(string) > -1 && toIndex(i+1,j-1) != -1) { // bottom left
-            past.add(toIndex(i+1,j-1));
-            findWords(node.next[(int) graph[i+1][j-1] - 65], i+1, j-1, string + graph[i+1][j-1], past);
-            past.remove(past.size()-1);
-        }
-        if (!past.contains(toIndex(i+1,j)) && inTrie(string) > -1 && toIndex(i+1,j) != -1) { // below
-            past.add(toIndex(i+1,j));
-            findWords(node.next[(int) graph[i+1][j] - 65], i+1, j, string + graph[i+1][j], past);
-            past.remove(past.size()-1);
-        }
-        if (!past.contains(toIndex(i+1,j+1)) && inTrie(string) > -1 && toIndex(i+1,j+1) != -1) { // bottom right
-            past.add(toIndex(i+1,j+1));
-            findWords(node.next[(int) graph[i+1][j+1] - 65], i+1, j+1, string + graph[i+1][j+1], past);
-            past.remove(past.size()-1);
-        }
-        if (!past.contains(toIndex(i,j+1)) && inTrie(string) > -1 && toIndex(i,j+1) != -1) { // right
-            past.add(toIndex(i,j+1));
-            findWords(node.next[(int) graph[i][j+1] - 65], i, j+1, string + graph[i][j+1], past);
-            past.remove(past.size()-1);
-        }
-        if (!past.contains(toIndex(i-1,j+1)) && inTrie(string) > -1 && toIndex(i-1,j+1) != -1) { // top right
-            past.add(toIndex(i-1,j+1));
-            findWords(node.next[(int) graph[i-1][j+1] - 65], i-1, j+1, string + graph[i-1][j+1], past);
-            past.remove(past.size()-1);
+        if (graph[i][j] == 'Q' && string.charAt(string.length()-1) == 'Q') findWords(node.next[20], i, j, string + "U", past);
+
+        else {
+
+
+            if (inTrie(string) == 1 && !word_set.contains(string) && string.length()
+                    > 2) { // if this word is in the trie and is the end of a word
+                words.push(string);
+                word_set.add(string);
+            }
+
+            // directly above
+            if (!past.contains(toIndex(i - 1, j)) && inTrie(string) > -1 && toIndex(i - 1, j)
+                    != -1) { // if this dice is unvisited, the prefix is in the string, and the next looked at die is valid
+                past.add(toIndex(i - 1, j));
+                // if (graph[i-1][j] == 'Q') {
+                //     findWords(node.next[(int) graph[i-1][j] - 65].next[20], i-1, j, string + graph[i-1][j] + "U", past);
+                // }
+                findWords(node.next[(int) graph[i - 1][j] - 65], i - 1, j, string + graph[i - 1][j],
+                          past);
+                past.remove(past.size() - 1);
+            }
+            if (!past.contains(toIndex(i - 1, j - 1)) && inTrie(string) > -1
+                    && toIndex(i - 1, j - 1) != -1) { // top left
+                past.add(toIndex(i - 1, j - 1));
+                // if (graph[i-1][j-1] == 'Q') {
+                //     findWords(node.next[(int) graph[i-1][j-1] - 65].next[20], i-1, j-1, string + graph[i-1][j-1] + "U", past);
+                // }
+                findWords(node.next[(int) graph[i - 1][j - 1] - 65], i - 1, j - 1,
+                          string + graph[i - 1][j - 1], past);
+                past.remove(past.size() - 1);
+            }
+            if (!past.contains(toIndex(i, j - 1)) && inTrie(string) > -1
+                    && toIndex(i, j - 1) != -1) { // left
+                past.add(toIndex(i, j - 1));
+                // if (graph[i][j-1] == 'Q') {
+                //     findWords(node.next[(int) graph[i][j-1] - 65].next[20], i, j-1, string + graph[i][j-1] + "U", past);
+                // }
+                findWords(node.next[(int) graph[i][j - 1] - 65], i, j - 1, string + graph[i][j - 1],
+                          past);
+                past.remove(past.size() - 1);
+            }
+            if (!past.contains(toIndex(i + 1, j - 1)) && inTrie(string) > -1
+                    && toIndex(i + 1, j - 1) != -1) { // bottom left
+                past.add(toIndex(i + 1, j - 1));
+                // if (graph[i+1][j-1] == 'Q') {
+                //     findWords(node.next[(int) graph[i+1][j-1] - 65].next[20], i+1, j-1, string + graph[i+1][j-1] + "U", past);
+                // }
+                findWords(node.next[(int) graph[i + 1][j - 1] - 65], i + 1, j - 1,
+                          string + graph[i + 1][j - 1], past);
+                past.remove(past.size() - 1);
+            }
+            if (!past.contains(toIndex(i + 1, j)) && inTrie(string) > -1
+                    && toIndex(i + 1, j) != -1) { // below
+                past.add(toIndex(i + 1, j));
+                // if (graph[i+1][j] == 'Q') {
+                //     findWords(node.next[(int) graph[i+1][j] - 65].next[20], i+1, j, string + graph[i+1][j] + "U", past);
+                // }
+                findWords(node.next[(int) graph[i + 1][j] - 65], i + 1, j, string + graph[i + 1][j],
+                          past);
+                past.remove(past.size() - 1);
+            }
+            if (!past.contains(toIndex(i + 1, j + 1)) && inTrie(string) > -1
+                    && toIndex(i + 1, j + 1) != -1) { // bottom right
+                past.add(toIndex(i + 1, j + 1));
+                // if (graph[i+1][j+1] == 'Q') {
+                //     findWords(node.next[(int) graph[i+1][j+1] - 65].next[20], i+1, j+1, string + graph[i+1][j+1] + "U", past);
+                // }
+                findWords(node.next[(int) graph[i + 1][j + 1] - 65], i + 1, j + 1,
+                          string + graph[i + 1][j + 1], past);
+                past.remove(past.size() - 1);
+            }
+            if (!past.contains(toIndex(i, j + 1)) && inTrie(string) > -1
+                    && toIndex(i, j + 1) != -1) { // right
+                past.add(toIndex(i, j + 1));
+                // if (graph[i][j+1] == 'Q') {
+                //     findWords(node.next[(int) graph[i][j+1] - 65].next[20], i, j+1, string + graph[i][j+1] + "U", past);
+                // }
+                findWords(node.next[(int) graph[i][j + 1] - 65], i, j + 1, string + graph[i][j + 1],
+                          past);
+                past.remove(past.size() - 1);
+            }
+            if (!past.contains(toIndex(i - 1, j + 1)) && inTrie(string) > -1
+                    && toIndex(i - 1, j + 1) != -1) { // top right
+                past.add(toIndex(i - 1, j + 1));
+                // if (graph[i-1][j+1] == 'Q') {
+                //     findWords(node.next[(int) graph[i-1][j+1] - 65].next[20], i-1, j+1, string + graph[i-1][j+1] + "U", past);
+                // }
+                findWords(node.next[(int) graph[i - 1][j + 1] - 65], i - 1, j + 1,
+                          string + graph[i - 1][j + 1], past);
+                past.remove(past.size() - 1);
+            }
         }
     }
 
