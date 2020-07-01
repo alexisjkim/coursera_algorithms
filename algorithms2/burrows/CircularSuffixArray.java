@@ -49,8 +49,8 @@ public class CircularSuffixArray {
 
     // unit testing (required)
     public static void main(String[] args) {
-        CircularSuffixArray a = new CircularSuffixArray("ABRACADABRA!");
-        System.out.println(a.index(11));
+        CircularSuffixArray a = new CircularSuffixArray("AAAAAAA");
+        System.out.println(a.index(4));
 
 
     }
