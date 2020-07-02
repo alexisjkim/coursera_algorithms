@@ -1,4 +1,4 @@
-package algorithms2.burrows;
+
 
 import java.util.Arrays;
 

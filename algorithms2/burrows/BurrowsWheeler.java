@@ -1,4 +1,3 @@
-package algorithms2.burrows;
 
 public class BurrowsWheeler {
 
