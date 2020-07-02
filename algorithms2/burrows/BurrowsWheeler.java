@@ -44,30 +44,35 @@ public class BurrowsWheeler {
     // reading from standard input and writing to standard output
     public static void inverseTransform() {
         int first = BinaryStdIn.readInt();
-        String string = BinaryStdIn.readString();
-        char[] sorted_suffix = new char[string.length()];
+        String string = BinaryStdIn.readString(); // last char in sorted suffixes (t[])
+        char[] sorted_suffix = new char[string.length()]; // first char in sorted suffixes
         for (int i = 0; i < string.length(); i++) sorted_suffix[i] = string.charAt(i);
         Arrays.sort(sorted_suffix);
 
-        int[] next = new int[string.length()];
-        next[0] = first;
+        int[] next = new int[string.length()]; // next[]
+    //    next[0] = first;
+
+
 
         StringBuilder st = new StringBuilder();
 
-        int count = 0;
-        for (int i = 1; i < string.length(); i++) { // making next[] list
-            if (sorted_suffix[i] == sorted_suffix[i-1]) count++;
-            else count = 0;
+        int count = 1;
+        for (int i = 0; i < string.length(); i++) { // making next[] list
+            if (i > 0) {
+                if (sorted_suffix[i] == sorted_suffix[i - 1]) count++;
+                else count = 1;
+            }
 
             int current_count = 0;
             for (int j = 0; j < string.length(); j++) {
                 if (string.charAt(j) == sorted_suffix[i]) current_count++;
-                if (current_count > count) {
+                if (current_count == count) {
                     next[i] = j;
                     break;
                 }
             }
         }
+
         int next_index = first;
         for (int i = 0; i < string.length(); i++) {
             st.append(sorted_suffix[next_index]);
