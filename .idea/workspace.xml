@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithms2/burrows/MoveToFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms2/burrows/MoveToFront.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms2/burrows/BurrowsWheeler.java" beforeDir="false" afterPath="$PROJECT_DIR$/algorithms2/burrows/BurrowsWheeler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +144,7 @@
       <option name="presentableId" value="Default" />
       <updated>1592954624525</updated>
       <workItem from="1592954626039" duration="514000" />
-      <workItem from="1592955271684" duration="44141000" />
+      <workItem from="1592955271684" duration="45182000" />
     </task>
     <servers />
   </component>
