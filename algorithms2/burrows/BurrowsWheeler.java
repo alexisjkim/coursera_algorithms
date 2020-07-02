@@ -8,28 +8,47 @@ public class BurrowsWheeler {
     // apply Burrows-Wheeler transform,
     // reading from standard input and writing to standard output
     public static void transform() {
+
         String string = BinaryStdIn.readString();
 
-        String[] sorted = new String[string.length()];
-
-        for (int i = 0; i < string.length(); i++) {
-            StringBuilder st = new StringBuilder();
-            for (int j = i; j < string.length(); j++) {
-                st.append(string.charAt(j));
-            }
-            for (int j = 0; j < i; j++) {
-                st.append(string.charAt(j));
-            }
-            sorted[i] = st.toString();
-        }
-        Arrays.sort(sorted);
+        int first = 0;
 
         StringBuilder st = new StringBuilder();
-        for (int i = 0; i < sorted.length; i++) {
-            if (sorted[i].equals(string)) BinaryStdOut.write(i);
-            st.append(sorted[i].charAt(string.length() - 1));
 
+        CircularSuffixArray a = new CircularSuffixArray(string);
+
+        for (int i = 0; i < string.length(); i++) {
+            int index = a.index(i);
+
+            if (index == 0) {
+                first = i;
+                index = string.length();
+            }
+            char c = string.charAt(index - 1);
+            st.append(c);
         }
+
+
+        // for (int i = 0; i < string.length(); i++) {
+        //     StringBuilder st = new StringBuilder();
+        //     for (int j = i; j < string.length(); j++) {
+        //         st.append(string.charAt(j));
+        //     }
+        //     for (int j = 0; j < i; j++) {
+        //         st.append(string.charAt(j));
+        //     }
+        //     sorted[i] = st.toString();
+        // }
+        // Arrays.sort(sorted);
+
+        // StringBuilder st = new StringBuilder();
+        // for (int i = 0; i < sorted.length; i++) {
+        //     if (sorted[i].equals(string)) BinaryStdOut.write(i);
+        //     st.append(sorted[i].charAt(string.length() - 1));
+        //
+        // }
+
+        BinaryStdOut.write(first);
         BinaryStdOut.write(st.toString());
         BinaryStdIn.close();
         BinaryStdOut.close();
