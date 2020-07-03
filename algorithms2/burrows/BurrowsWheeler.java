@@ -1,7 +1,10 @@
+package algorithms2.burrows;
+
 import edu.princeton.cs.algs4.BinaryStdIn;
 import edu.princeton.cs.algs4.BinaryStdOut;
+import edu.princeton.cs.algs4.Queue;
 
-import java.util.Arrays;
+import java.util.HashMap;
 
 public class BurrowsWheeler {
 
@@ -28,26 +31,6 @@ public class BurrowsWheeler {
             st.append(c);
         }
 
-
-        // for (int i = 0; i < string.length(); i++) {
-        //     StringBuilder st = new StringBuilder();
-        //     for (int j = i; j < string.length(); j++) {
-        //         st.append(string.charAt(j));
-        //     }
-        //     for (int j = 0; j < i; j++) {
-        //         st.append(string.charAt(j));
-        //     }
-        //     sorted[i] = st.toString();
-        // }
-        // Arrays.sort(sorted);
-
-        // StringBuilder st = new StringBuilder();
-        // for (int i = 0; i < sorted.length; i++) {
-        //     if (sorted[i].equals(string)) BinaryStdOut.write(i);
-        //     st.append(sorted[i].charAt(string.length() - 1));
-        //
-        // }
-
         BinaryStdOut.write(first);
         BinaryStdOut.write(st.toString());
         BinaryStdIn.close();
@@ -62,41 +45,47 @@ public class BurrowsWheeler {
     // apply Burrows-Wheeler inverse transform,
     // reading from standard input and writing to standard output
     public static void inverseTransform() {
+
         int first = BinaryStdIn.readInt();
-        String string = BinaryStdIn.readString(); // last char in sorted suffixes (t[])
-        char[] sorted_suffix = new char[string.length()]; // first char in sorted suffixes
-        for (int i = 0; i < string.length(); i++) sorted_suffix[i] = string.charAt(i);
-        Arrays.sort(sorted_suffix);
+        String string = BinaryStdIn.readString(); // last char in sorted suffixes (t[]
 
-        int[] next = new int[string.length()]; // next[]
-    //    next[0] = first;
+        int[] next = new int[string.length()];
+        char[] aux = new char[string.length()];
+        HashMap<Character, Queue<Integer>> map = new HashMap<>();
 
+        int N = string.length();
+        int[] count = new int[257];
+        for (int i = 0; i < N; i++)
+            count[string.charAt(i)+1]++;
+        for (int r = 0; r < 256; r++)
+            count[r+1] += count[r];
+        for (int i = 0; i < N; i++) {
+            if (!map.containsKey(string.charAt(i))){
+                Queue<Integer> queue = new Queue<>();
+                queue.enqueue(i);
+                map.put(string.charAt(i), queue);
+            }
+            else {
+                Queue<Integer> queue = map.get(string.charAt(i));
+                queue.enqueue(i);
+                map.put(string.charAt(i), queue);
+            }
+
+            aux[count[string.charAt(i)]++] = string.charAt(i);
+        }
+
+        for (int i = 0; i < N; i++) {
+            next[i] = map.get(aux[i]).dequeue();
+        }
 
 
         StringBuilder st = new StringBuilder();
-
-        int count = 1;
-        for (int i = 0; i < string.length(); i++) { // making next[] list
-            if (i > 0) {
-                if (sorted_suffix[i] == sorted_suffix[i - 1]) count++;
-                else count = 1;
-            }
-
-            int current_count = 0;
-            for (int j = 0; j < string.length(); j++) {
-                if (string.charAt(j) == sorted_suffix[i]) current_count++;
-                if (current_count == count) {
-                    next[i] = j;
-                    break;
-                }
-            }
-        }
-
         int next_index = first;
         for (int i = 0; i < string.length(); i++) {
-            st.append(sorted_suffix[next_index]);
+            st.append(aux[next_index]);
             next_index = next[next_index];
         }
+
         BinaryStdOut.write(st.toString());
         BinaryStdIn.close();
         BinaryStdOut.close();

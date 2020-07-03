@@ -1,4 +1,4 @@
-
+package algorithms2.burrows;
 
 import java.util.Arrays;
 
@@ -10,6 +10,7 @@ public class CircularSuffixArray {
     // circular suffix array of s
     public CircularSuffixArray(String s) {
         if (s == null) throw new IllegalArgumentException();
+
         string = s;
         original = new String[string.length()];
         sorted = new String[string.length()];
@@ -49,10 +50,6 @@ public class CircularSuffixArray {
 
     // unit testing (required)
     public static void main(String[] args) {
-        CircularSuffixArray a = new CircularSuffixArray("AAAAAAA");
-        System.out.println(a.index(4));
-
-
     }
 
 }

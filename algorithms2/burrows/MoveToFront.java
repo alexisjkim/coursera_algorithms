@@ -1,3 +1,4 @@
+package algorithms2.burrows;
 
 import edu.princeton.cs.algs4.BinaryStdIn;
 import edu.princeton.cs.algs4.BinaryStdOut;
@@ -13,8 +14,6 @@ public class MoveToFront {
 
         while (!BinaryStdIn.isEmpty()) {
             char c = BinaryStdIn.readChar();
-            char buffer = alphabet[0];
-
 
             int x = 0;
 
